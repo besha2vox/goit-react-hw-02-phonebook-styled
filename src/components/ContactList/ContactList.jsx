@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   List,
   ListItem,
@@ -37,3 +38,19 @@ const ContactList = ({ contacts, removeContact, editContact }) => {
 };
 
 export default ContactList;
+
+ContactList.defaultProps = {
+  contacts: [],
+};
+
+ContactList.propTypes = {
+  editContact: PropTypes.func.isRequired,
+  removeContact: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+};

@@ -12,11 +12,8 @@ const ContactForm = styled.form`
   padding: 15px;
 
   transform: translateY(100%);
-
   width: 100%;
-
   background: inherit;
-
   border-bottom-left-radius: 30%;
   border-bottom-right-radius: 30%;
   animation: slide 500ms ease;
@@ -42,8 +39,14 @@ const ContactLabel = styled.label`
 
 const ContactInput = styled.input`
   width: 358px;
-  padding: 4px;
+  padding: 4px 12px;
   font-size: 18px;
+  height: 30px;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px 1px rgba(0, 40, 70, 0.7);
+  background: #fff;
+  border: none;
+  outline-color: rgba(0, 40, 70, 0.47);
 `;
 
 const ContactButton = styled.button`

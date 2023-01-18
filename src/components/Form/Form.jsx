@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   ContactButton,
   ContactForm,
@@ -12,7 +13,12 @@ const INITIAL_STATE = {
 };
 
 class Form extends Component {
-  state = INITIAL_STATE;
+  state = {
+    name: this.props.selectContact.name,
+    number: this.props.selectContact.number,
+  };
+
+  static defaultProps = { form: 'add' };
 
   hendleChange = e => {
     const optionKey = e.currentTarget.name;
@@ -27,7 +33,9 @@ class Form extends Component {
   hendleSubmit = e => {
     e.preventDefault();
     const { formEvent, editContact, onSubmit } = this.props;
-    if (formEvent === 'add') onSubmit(this.state);
+    if (formEvent === 'add') {
+      onSubmit(this.state);
+    }
     if (formEvent === 'edit') editContact(this.state);
     this.reset();
   };
@@ -41,6 +49,7 @@ class Form extends Component {
         <ContactLabel>
           Full Name:
           <ContactInput
+            autoFocus
             onChange={this.hendleChange}
             value={name}
             type="text"
@@ -69,3 +78,13 @@ class Form extends Component {
 }
 
 export default Form;
+
+Form.propTypes = {
+  formEvent: PropTypes.oneOf(['add', 'edit']),
+  onSubmit: PropTypes.func.isRequired,
+  editContact: PropTypes.func,
+  selectContact: PropTypes.shape({
+    name: PropTypes.string,
+    number: PropTypes.string,
+  }),
+};

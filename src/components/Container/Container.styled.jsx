@@ -16,6 +16,8 @@ const Smartphone = styled.div`
   overflow: hidden;
   padding-bottom: 20px;
 
+  box-shadow: 5px 5px 10px 2px #3d3d3d;
+
   &::before {
     content: '';
     display: block;

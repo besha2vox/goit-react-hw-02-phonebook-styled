@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 const FormOptions = `animation: borderRadiusChange 500ms ease; 
 border-bottom-left-radius: 0; 
@@ -46,27 +47,20 @@ const Title = styled.h1`
   border-bottom-right-radius: 30%;
 `;
 
-const Button = styled.button`
+const buttonStyle = () => css`
   position: absolute;
-  top: 15px;
-  right: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
   width: 36px;
   height: 36px;
-  font-size: 36px;
-  color: #ffffff;
   background-color: transparent;
   border-radius: 50%;
   border: 1px solid #ffffff;
   cursor: pointer;
-  transform: ${({ isFormOpen }) =>
-    isFormOpen ? 'rotate(135deg)' : 'ratate(0)'};
   transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out,
     text-shadow 300ms ease-in-out;
-
   text-shadow: 2px 2px 2px black;
   box-shadow: 2px 2px 2px black;
   &:hover {
@@ -75,7 +69,29 @@ const Button = styled.button`
   }
 `;
 
-const Counter = styled.p`
+const ButtonAdd = styled.button`
+  ${buttonStyle};
+  top: 15px;
+  right: 15px;
+  font-size: 36px;
+  color: #ffffff;
+
+  transform: ${({ isFormOpen }) =>
+    isFormOpen ? 'rotate(135deg)' : 'ratate(0)'};
+`;
+
+const ButtonSearch = styled.button`
+  ${buttonStyle}
+  top: 5px;
+  left: 32px;
+
+  & svg {
+    filter: drop-shadow(30px 10px 4px #4444dd);
+  }
+`;
+
+const Counter = styled.div`
+  z-index: 1;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -85,7 +101,7 @@ const Counter = styled.p`
   text-align: center;
   background: linear-gradient(
     360deg,
-    rgb(0, 40, 70) 50%,
+    rgb(0, 40, 70) 10%,
     rgb(255, 115, 115),
     rgb(255, 175, 123)
   );
@@ -93,4 +109,13 @@ const Counter = styled.p`
   border-top-right-radius: 30%;
 `;
 
-export { Title, Button, Wrapper, Counter };
+const EmptyList = styled.p`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  text-align: center;
+`;
+
+export { Title, ButtonAdd, Wrapper, Counter, EmptyList, ButtonSearch };

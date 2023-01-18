@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-const FormOptions = `animation: borderRadiusChange 500ms ease; 
+const FormOptions = `animation: borderRadiusChange 100ms ease; 
 border-bottom-left-radius: 0; 
 border-bottom-right-radius: 0;`;
 

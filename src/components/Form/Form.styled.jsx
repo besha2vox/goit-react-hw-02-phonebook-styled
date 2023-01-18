@@ -10,7 +10,7 @@ const ContactForm = styled.form`
   flex-direction: column;
   gap: 12px;
   padding: 15px;
-
+  transform-origin: top;
   transform: translateY(100%);
   width: 100%;
   background: inherit;
@@ -20,11 +20,11 @@ const ContactForm = styled.form`
 
   @keyframes slide {
     0% {
-      transform: translateY(-100%);
+      transform: translateY(70%) scaleY(0.5);
     }
 
     100% {
-      transform: translateY(100%);
+      transform: translateY(100%) scale(1);
     }
   }
 `;

@@ -50,6 +50,7 @@ class Form extends Component {
           Full Name:
           <ContactInput
             autoFocus
+            placeholder="Enter contact name..."
             onChange={this.hendleChange}
             value={name}
             type="text"
@@ -62,6 +63,7 @@ class Form extends Component {
         <ContactLabel>
           Phone Number:
           <ContactInput
+            placeholder="Enter contact number..."
             onChange={this.hendleChange}
             value={number}
             type="tel"

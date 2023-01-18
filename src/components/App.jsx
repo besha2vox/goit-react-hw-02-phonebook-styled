@@ -24,15 +24,17 @@ class App extends Component {
   state = {
     contacts: contacts,
     filterWord: '',
-    isFormOpen: false,
-    isSearchOpen: false,
+    isFormOpen: false, // for open/close form
+    isSearchOpen: false, // for open/close search input
     selectContact: {
+      // for edit contact
       name: '',
       number: '',
     },
-    formEvent: '',
+    formEvent: '', // get oneOf['add', 'edit'] to perform the appropriate function edit or add
   };
 
+  // ----------|SORT
   sortContacts = () => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts].sort((a, b) =>
@@ -41,11 +43,11 @@ class App extends Component {
     }));
   };
 
+  // ----------|ADD
   addContact = contact => {
     const isEncludes = this.state.contacts.some(
       stateContact => stateContact.name === contact.name
     );
-    console.log('isEncludes', isEncludes);
     if (isEncludes) {
       alert(`${contact.name} is already in contacts.`);
       return;
@@ -59,6 +61,7 @@ class App extends Component {
     this.sortContacts();
   };
 
+  // ----------|REMOVE
   removeContact = e => {
     const id = e.currentTarget.closest('li').id;
     this.setState(prevState => ({
@@ -66,6 +69,7 @@ class App extends Component {
     }));
   };
 
+  // ----------|EDIT
   selectContact = e => {
     const id = e.currentTarget.closest('li').id;
     this.setState({
@@ -97,6 +101,7 @@ class App extends Component {
     this.sortContacts();
   };
 
+  // ----------|Hendlers
   hendleChange = e => {
     const value = e.currentTarget.value;
     this.setState({ filterWord: value.toLowerCase() });

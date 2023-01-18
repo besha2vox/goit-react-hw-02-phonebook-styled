@@ -16,7 +16,7 @@ const ListItem = styled.li`
     width: 32px;
     height: 32px;
 
-    filter: drop-shadow(1px 1px 2px black);
+    /* filter: drop-shadow(1px 1px 2px black); */
   }
 `;
 
@@ -43,7 +43,7 @@ const ListButton = styled.button`
   border: none;
 
   box-shadow: 1px 1px 2px black;
-  filter: drop-shadow(1px 1px 2px black);
+  /* filter: drop-shadow(1px 1px 2px black); */
   transition: box-shadow 300ms ease-in-out, filter 300ms ease-in-out;
 
   width: 40px;
@@ -55,7 +55,7 @@ const ListButton = styled.button`
 
   &:hover {
     box-shadow: -1px -1px 2px #000000;
-    filter: drop-shadow(-1px -1px 1px #000000);
+    /* filter: drop-shadow(-1px -1px 1px #000000); */
   }
 `;
 

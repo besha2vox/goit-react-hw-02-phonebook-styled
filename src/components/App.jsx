@@ -64,7 +64,7 @@ class App extends Component {
 
   // ----------|REMOVE
   removeContact = e => {
-    const id = e.currentTarget.closest('li').id;
+    const id = e.currentTarget.id;
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
@@ -72,23 +72,12 @@ class App extends Component {
 
   // ----------|EDIT
   selectContact = e => {
-    const id = e.currentTarget.closest('li').id;
+    const id = e.currentTarget.id;
     this.setState({
       selectContact: this.state.contacts.find(contact => contact.id === id),
       isFormOpen: true,
       formEvent: e.currentTarget.dataset.action,
     });
-    console.log(this.state.contacts.find(contact => contact.id === id));
-  };
-
-  filterContacts = () => {
-    const { contacts, filterWord } = this.state;
-    if (!filterWord) {
-      return contacts;
-    }
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterWord)
-    );
   };
 
   editContact = editedContact => {
@@ -102,6 +91,17 @@ class App extends Component {
     this.sortContacts();
   };
 
+  // ----------|SEARCH
+  filterContacts = () => {
+    const { contacts, filterWord } = this.state;
+    if (!filterWord) {
+      return contacts;
+    }
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filterWord)
+    );
+  };
+
   // ----------|Hendlers
   hendleChange = e => {
     const value = e.currentTarget.value;
@@ -111,6 +111,9 @@ class App extends Component {
   hendleToggleForm = e => {
     this.setState({
       isFormOpen: !this.state.isFormOpen,
+      isSearchOpen: this.state.isSearchOpen
+        ? !this.state.isSearchOpen
+        : this.state.isSearchOpen,
       formEvent: e.currentTarget.dataset.action,
       selectContact: INITIAL_STATE,
     });
@@ -119,13 +122,15 @@ class App extends Component {
   hendleToggleSearch = () => {
     this.setState({
       isSearchOpen: !this.state.isSearchOpen,
+      isFormOpen: this.state.isFormOpen
+        ? !this.state.isFormOpen
+        : this.state.isFormOpen,
     });
   };
 
   render() {
     const { isFormOpen, isSearchOpen, formEvent, filterWord, selectContact } =
       this.state;
-
     const contacts = this.filterContacts();
     const contactsCount = contacts.length;
 

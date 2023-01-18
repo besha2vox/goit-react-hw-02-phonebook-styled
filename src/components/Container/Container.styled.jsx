@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 
 const Smartphone = styled.div`
   max-width: 100%;
+  @media screen and (max-width: 767px) {
+    height: 100%;
+  }
 
   @media screen and (min-width: 768px) {
     position: fixed;

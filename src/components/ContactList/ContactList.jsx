@@ -13,7 +13,7 @@ const ContactList = ({ contacts, removeContact, editContact }) => {
   return (
     <List>
       {contacts.map(({ id, name, number }) => (
-        <ListItem id={id} key={id}>
+        <ListItem key={id}>
           <RiContactsLine />
           <div>
             <ListText>{name}</ListText>
@@ -21,12 +21,12 @@ const ContactList = ({ contacts, removeContact, editContact }) => {
           </div>
           <ButtonList>
             <li>
-              <ListButton data-action="edit" onClick={editContact}>
+              <ListButton id={id} data-action="edit" onClick={editContact}>
                 <AiOutlineEdit />
               </ListButton>
             </li>
             <li>
-              <ListButton onClick={removeContact}>
+              <ListButton id={id} onClick={removeContact}>
                 <AiOutlineUserDelete />
               </ListButton>
             </li>

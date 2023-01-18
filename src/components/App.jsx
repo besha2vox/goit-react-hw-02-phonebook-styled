@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
-import svg from '../data/svg';
 import contacts from '../data/data.json';
 import {
   Title,
@@ -14,6 +13,8 @@ import Container from './Container';
 import Form from './Form';
 import ContactList from './ContactList';
 import SearchForm from './SerchForm/SerchForm';
+import { AiOutlineUserAdd, AiOutlineSearch } from 'react-icons/ai';
+import { MdClose } from 'react-icons/md';
 
 const INITIAL_STATE = {
   name: '',
@@ -131,13 +132,13 @@ class App extends Component {
     return (
       <Container>
         <Wrapper isFormOpen={isFormOpen}>
-          <Title>Phone Book</Title>
+          <Title>PhoneBook</Title>
           <ButtonAdd
             data-action="add"
             isFormOpen={isFormOpen}
             onClick={this.hendleToggleForm}
           >
-            +
+            {isFormOpen ? <MdClose /> : <AiOutlineUserAdd />}
           </ButtonAdd>
           {isFormOpen && (
             <Form
@@ -164,7 +165,7 @@ class App extends Component {
         <Counter>
           <p>{contactsCount} contacts was faunded</p>
           <ButtonSearch onClick={this.hendleToggleSearch}>
-            {isSearchOpen ? svg.searchCloseIcon : svg.searchIcon}
+            {isSearchOpen ? <MdClose /> : <AiOutlineSearch />}
           </ButtonSearch>
         </Counter>
         {isSearchOpen && <SearchForm onChange={this.hendleChange} />}

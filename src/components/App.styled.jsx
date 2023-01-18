@@ -48,15 +48,17 @@ const Title = styled.h1`
 `;
 
 const buttonStyle = () => css`
+  padding: 4px;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
   width: 36px;
   height: 36px;
   background-color: transparent;
   border-radius: 50%;
+  font-size: 36px;
+  color: #ffffff;
   border: 1px solid #ffffff;
   cursor: pointer;
   transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out,
@@ -73,11 +75,6 @@ const ButtonAdd = styled.button`
   ${buttonStyle};
   top: 15px;
   right: 15px;
-  font-size: 36px;
-  color: #ffffff;
-
-  transform: ${({ isFormOpen }) =>
-    isFormOpen ? 'rotate(135deg)' : 'ratate(0)'};
 `;
 
 const ButtonSearch = styled.button`

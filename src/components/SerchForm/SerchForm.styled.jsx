@@ -14,7 +14,7 @@ const InputWrapper = styled.div`
 
   @keyframes slide {
     0% {
-      transform: translateY(0);
+      transform: translateY(-20%);
     }
 
     100% {

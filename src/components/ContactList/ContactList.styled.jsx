@@ -12,9 +12,9 @@ const ListItem = styled.li`
   display: flex;
   align-items: center;
 
-  img {
-    width: 40px;
-    height: 40px;
+  svg {
+    width: 32px;
+    height: 32px;
   }
 `;
 
@@ -22,26 +22,34 @@ const ListText = styled.p`
   margin-left: 20px;
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.ul`
   margin-left: auto;
+  display: flex;
+  gap: 8px;
 `;
 
 const ListButton = styled.button`
-  margin-left: 8px;
+  color: #ffffff;
   background-color: transparent;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  background-image: url(${({ backgroundImage }) => backgroundImage});
   background-repeat: no-repeat;
   background-size: cover;
   border: none;
 
+  box-shadow: 2px 2px 4px #000000;
+  transition: box-shadow 300ms ease-in-out;
+
   width: 40px;
   height: 40px;
+  & svg {
+    width: 28px;
+    height: 28px;
+  }
 
   &:hover {
-    box-shadow: 2px 2px 4px #000000;
+    box-shadow: -2px -2px 4px #000000;
   }
 `;
 

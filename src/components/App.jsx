@@ -133,6 +133,12 @@ class App extends Component {
       this.state;
     const contacts = this.filterContacts();
     const contactsCount = contacts.length;
+    console.log(
+      'form: ',
+      this.state.isFormOpen,
+      'search: ',
+      this.state.isSearchOpen
+    );
 
     return (
       <Container>

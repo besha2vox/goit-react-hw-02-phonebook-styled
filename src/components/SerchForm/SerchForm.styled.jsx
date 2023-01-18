@@ -10,9 +10,9 @@ const InputWrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  animation: slide 500ms ease;
+  animation: slideSearch 500ms ease;
 
-  @keyframes slide {
+  @keyframes slideSearch {
     0% {
       transform: translateY(-20%);
     }

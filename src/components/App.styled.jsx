@@ -62,12 +62,13 @@ const buttonStyle = () => css`
   border: 1px solid #ffffff;
   cursor: pointer;
   transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out,
-    text-shadow 300ms ease-in-out;
-  text-shadow: 2px 2px 2px black;
-  box-shadow: 2px 2px 2px black;
+    text-shadow 300ms ease-in-out, filter 300ms ease-in-out;
+  filter: drop-shadow(1px 1px 2px black);
+  box-shadow: 1px 1px 2px 0 black;
+
   &:hover {
-    box-shadow: -2px -2px 2px black;
-    text-shadow: -2px -2px 2px black;
+    filter: drop-shadow(-1px -1px 2px black);
+    box-shadow: -1px -1px 2px black;
   }
 `;
 

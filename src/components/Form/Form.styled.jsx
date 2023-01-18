@@ -34,7 +34,7 @@ const ContactLabel = styled.label`
   flex-direction: column;
   gap: 4px;
   font-size: 22px;
-  font-weight: semibold;
+  font-weight: 500;
 `;
 
 const ContactInput = styled.input`

@@ -4,7 +4,7 @@ import {
   ListItem,
   ListText,
   ListButton,
-  ButtonWrapper,
+  ButtonList,
 } from './ContactList.styled';
 import { AiOutlineUserDelete, AiOutlineEdit } from 'react-icons/ai';
 import { RiContactsLine } from 'react-icons/ri';
@@ -19,14 +19,18 @@ const ContactList = ({ contacts, removeContact, editContact }) => {
             <ListText>{name}</ListText>
             <ListText>{number}</ListText>
           </div>
-          <ButtonWrapper>
-            <ListButton data-action="edit" onClick={editContact}>
-              <AiOutlineUserDelete />
-            </ListButton>
-            <ListButton onClick={removeContact}>
-              <AiOutlineEdit />
-            </ListButton>
-          </ButtonWrapper>
+          <ButtonList>
+            <li>
+              <ListButton data-action="edit" onClick={editContact}>
+                <AiOutlineEdit />
+              </ListButton>
+            </li>
+            <li>
+              <ListButton onClick={removeContact}>
+                <AiOutlineUserDelete />
+              </ListButton>
+            </li>
+          </ButtonList>
         </ListItem>
       ))}
     </List>

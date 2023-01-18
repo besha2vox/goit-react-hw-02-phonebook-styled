@@ -42,6 +42,15 @@ class App extends Component {
   };
 
   addContact = contact => {
+    const isEncludes = this.state.contacts.some(
+      stateContact => stateContact.name === contact.name
+    );
+    console.log('isEncludes', isEncludes);
+    if (isEncludes) {
+      alert(`${contact.name} is already in contacts.`);
+      return;
+    }
+
     contact.id = shortid.generate();
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],

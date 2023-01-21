@@ -34,9 +34,9 @@ class Form extends Component {
     e.preventDefault();
     const { formEvent, editContact, onSubmit } = this.props;
     if (formEvent === 'add') {
-      onSubmit(this.state);
+      onSubmit({ ...this.state });
     }
-    if (formEvent === 'edit') editContact(this.state);
+    if (formEvent === 'edit') editContact({ ...this.state });
     this.reset();
   };
 

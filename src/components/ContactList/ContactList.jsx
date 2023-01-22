@@ -21,12 +21,15 @@ const ContactList = ({ contacts, removeContact, editContact }) => {
           </div>
           <ButtonList>
             <li>
-              <ListButton id={id} data-action="edit" onClick={editContact}>
+              <ListButton
+                data-action="edit"
+                onClick={() => editContact(id, 'edit')}
+              >
                 <AiOutlineEdit />
               </ListButton>
             </li>
             <li>
-              <ListButton id={id} onClick={removeContact}>
+              <ListButton onClick={() => removeContact(id)}>
                 <AiOutlineUserDelete />
               </ListButton>
             </li>

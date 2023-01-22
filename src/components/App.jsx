@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 class App extends Component {
   state = {
     contacts: contacts,
-    filterWord: '',
+    filter: '',
     isFormOpen: false, // for open/close form
     isSearchOpen: false, // for open/close search input
     selectContact: {
@@ -63,20 +63,18 @@ class App extends Component {
   };
 
   // ----------|REMOVE
-  removeContact = e => {
-    const id = e.currentTarget.id;
+  removeContact = idContact => {
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
+      contacts: prevState.contacts.filter(({ id }) => id !== idContact),
     }));
   };
 
   // ----------|EDIT
-  selectContact = e => {
-    const id = e.currentTarget.id;
+  selectContact = (idContact, formEvent) => {
     this.setState({
-      selectContact: this.state.contacts.find(contact => contact.id === id),
+      selectContact: this.state.contacts.find(({ id }) => id === idContact),
       isFormOpen: true,
-      formEvent: e.currentTarget.dataset.action,
+      formEvent: formEvent,
     });
   };
 
@@ -93,19 +91,18 @@ class App extends Component {
 
   // ----------|SEARCH
   filterContacts = () => {
-    const { contacts, filterWord } = this.state;
-    if (!filterWord) {
+    const { contacts, filter } = this.state;
+    if (!filter) {
       return contacts;
     }
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterWord)
+      contact.name.toLowerCase().includes(filter)
     );
   };
 
   // ----------|Hendlers
-  hendleChange = e => {
-    const value = e.currentTarget.value;
-    this.setState({ filterWord: value.toLowerCase() });
+  hendleChange = filterWord => {
+    this.setState({ filter: filterWord.toLowerCase() });
   };
 
   hendleToggleForm = e => {
@@ -129,7 +126,7 @@ class App extends Component {
   };
 
   render() {
-    const { isFormOpen, isSearchOpen, formEvent, filterWord, selectContact } =
+    const { isFormOpen, isSearchOpen, formEvent, filter, selectContact } =
       this.state;
     const contacts = this.filterContacts();
     const contactsCount = contacts.length;
@@ -162,9 +159,7 @@ class App extends Component {
           />
         ) : (
           <EmptyList>
-            {filterWord.length < 1
-              ? 'Contact list is empty'
-              : 'Contact not found'}
+            {filter.length < 1 ? 'Contact list is empty' : 'Contact not found'}
           </EmptyList>
         )}
         <Counter>

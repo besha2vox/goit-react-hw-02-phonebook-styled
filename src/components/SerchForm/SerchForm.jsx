@@ -7,7 +7,7 @@ const SearchForm = ({ onChange }) => {
     <InputWrapper>
       <ContactInput
         autoFocus
-        onChange={onChange}
+        onChange={e => onChange(e.target.value)}
         placeholder="Enter name for search..."
       />
     </InputWrapper>

@@ -129,7 +129,6 @@ class App extends Component {
     const { isFormOpen, isSearchOpen, formEvent, filter, selectContact } =
       this.state;
     const contacts = this.filterContacts();
-    const contactsCount = contacts.length;
 
     return (
       <Container>
@@ -163,7 +162,7 @@ class App extends Component {
           </EmptyList>
         )}
         <Counter>
-          <p>{contactsCount} contacts was faunded</p>
+          <p>{contacts.length} contacts was faunded</p>
           <ButtonSearch onClick={this.hendleToggleSearch}>
             {isSearchOpen ? <MdClose /> : <AiOutlineSearch />}
           </ButtonSearch>

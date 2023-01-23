@@ -20,6 +20,16 @@ class Form extends Component {
 
   static defaultProps = { form: 'add' };
 
+  static propTypes = {
+    formEvent: PropTypes.oneOf(['add', 'edit']),
+    onSubmit: PropTypes.func.isRequired,
+    editContact: PropTypes.func,
+    selectContact: PropTypes.shape({
+      name: PropTypes.string,
+      number: PropTypes.string,
+    }),
+  };
+
   hendleChange = e => {
     const optionKey = e.currentTarget.name;
     const value = e.currentTarget.value;
@@ -80,13 +90,3 @@ class Form extends Component {
 }
 
 export default Form;
-
-Form.propTypes = {
-  formEvent: PropTypes.oneOf(['add', 'edit']),
-  onSubmit: PropTypes.func.isRequired,
-  editContact: PropTypes.func,
-  selectContact: PropTypes.shape({
-    name: PropTypes.string,
-    number: PropTypes.string,
-  }),
-};

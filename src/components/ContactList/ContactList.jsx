@@ -1,40 +1,19 @@
 import PropTypes from 'prop-types';
-import {
-  List,
-  ListItem,
-  ListText,
-  ListButton,
-  ButtonList,
-} from './ContactList.styled';
-import { AiOutlineUserDelete, AiOutlineEdit } from 'react-icons/ai';
-import { RiContactsLine } from 'react-icons/ri';
+import { List } from './ContactList.styled';
+import ContactListItem from './ContactListItem';
 
 const ContactList = ({ contacts, removeContact, editContact }) => {
   return (
     <List>
       {contacts.map(({ id, name, number }) => (
-        <ListItem key={id}>
-          <RiContactsLine />
-          <div>
-            <ListText>{name}</ListText>
-            <ListText>{number}</ListText>
-          </div>
-          <ButtonList>
-            <li>
-              <ListButton
-                data-action="edit"
-                onClick={() => editContact(id, 'edit')}
-              >
-                <AiOutlineEdit />
-              </ListButton>
-            </li>
-            <li>
-              <ListButton onClick={() => removeContact(id)}>
-                <AiOutlineUserDelete />
-              </ListButton>
-            </li>
-          </ButtonList>
-        </ListItem>
+        <ContactListItem
+          key={id}
+          d={id}
+          name={name}
+          number={number}
+          removeContact={() => removeContact(id)}
+          editContact={() => editContact(id, 'edit')}
+        />
       ))}
     </List>
   );

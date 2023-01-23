@@ -17,6 +17,7 @@ const ContactForm = styled.form`
   border-bottom-left-radius: 30%;
   border-bottom-right-radius: 30%;
   animation: slide 500ms ease;
+  overflow: hidden;
 
   @keyframes slide {
     0% {

@@ -35,6 +35,25 @@ class App extends Component {
     formEvent: '', // get oneOf['add', 'edit'] to perform the appropriate function edit or add
   };
 
+  //----------| React Lifecycle Methods
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (!parsedContacts) return;
+
+    this.setState({
+      contacts: parsedContacts,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const stringifyContacts = JSON.stringify(this.state.contacts);
+    if (this.state.contacts !== prevState.contacts)
+      localStorage.setItem('contacts', stringifyContacts);
+  }
+
   // ----------|SORT
   sortContacts = () => {
     this.setState(prevState => ({

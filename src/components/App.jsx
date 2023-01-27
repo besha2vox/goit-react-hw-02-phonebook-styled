@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
-import contacts from '../data/data.json';
 import {
   Title,
   ButtonAdd,
@@ -23,11 +22,11 @@ const INITIAL_STATE = {
 
 class App extends Component {
   state = {
-    contacts: contacts,
+    contacts: [],
     filter: '',
     isFormOpen: false, // for open/close form
     isSearchOpen: false, // for open/close search input
-    selectContact: {
+    selectedContact: {
       // for edit contact
       name: '',
       number: '',
@@ -65,14 +64,6 @@ class App extends Component {
 
   // ----------|ADD
   addContact = contact => {
-    const isEncludes = this.state.contacts.some(
-      stateContact => stateContact.name === contact.name
-    );
-    if (isEncludes) {
-      alert(`${contact.name} is already in contacts.`);
-      return;
-    }
-
     contact.id = shortid.generate();
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
@@ -80,6 +71,9 @@ class App extends Component {
     }));
     this.sortContacts();
   };
+
+  isContains = contactName =>
+    this.state.contacts.some(({ name }) => name === contactName);
 
   // ----------|REMOVE
   removeContact = idContact => {
@@ -91,16 +85,16 @@ class App extends Component {
   // ----------|EDIT
   selectContact = (idContact, formEvent) => {
     this.setState({
-      selectContact: this.state.contacts.find(({ id }) => id === idContact),
+      selectedContact: this.state.contacts.find(({ id }) => id === idContact),
       isFormOpen: true,
       formEvent: formEvent,
     });
   };
 
   editContact = editedContact => {
-    this.setState(({ contacts, selectContact }) => ({
+    this.setState(({ contacts, selectedContact }) => ({
       contacts: contacts.map(contact => {
-        if (contact.id !== selectContact.id) return contact;
+        if (contact.id !== selectedContact.id) return contact;
         return { ...contact, ...editedContact };
       }),
       isFormOpen: false,
@@ -131,7 +125,7 @@ class App extends Component {
         ? !this.state.isSearchOpen
         : this.state.isSearchOpen,
       formEvent: e.currentTarget.dataset.action,
-      selectContact: INITIAL_STATE,
+      selectedContact: INITIAL_STATE,
     });
   };
 
@@ -145,8 +139,17 @@ class App extends Component {
   };
 
   render() {
-    const { isFormOpen, isSearchOpen, formEvent, filter, selectContact } =
+    const { isFormOpen, isSearchOpen, formEvent, filter, selectedContact } =
       this.state;
+    const {
+      isContains,
+      removeContact,
+      editContact,
+      addContact,
+      selectContact,
+      hendleToggleSearch,
+      hendleChange,
+    } = this;
     const contacts = this.filterContacts();
 
     return (
@@ -162,17 +165,18 @@ class App extends Component {
           </ButtonAdd>
           {isFormOpen && (
             <Form
-              selectContact={selectContact}
-              editContact={this.editContact}
+              isContains={isContains}
+              selectedContact={selectedContact}
+              editContact={editContact}
               formEvent={formEvent}
-              onSubmit={this.addContact}
+              onSubmit={addContact}
             />
           )}
         </Wrapper>
         {contacts.length ? (
           <ContactList
-            editContact={this.selectContact}
-            removeContact={this.removeContact}
+            editContact={selectContact}
+            removeContact={removeContact}
             contacts={contacts}
           />
         ) : (
@@ -182,11 +186,11 @@ class App extends Component {
         )}
         <Counter>
           <p>{contacts.length} contacts was faunded</p>
-          <ButtonSearch onClick={this.hendleToggleSearch}>
+          <ButtonSearch onClick={hendleToggleSearch}>
             {isSearchOpen ? <MdClose /> : <AiOutlineSearch />}
           </ButtonSearch>
         </Counter>
-        {isSearchOpen && <SearchForm onChange={this.hendleChange} />}
+        {isSearchOpen && <SearchForm onChange={hendleChange} />}
       </Container>
     );
   }

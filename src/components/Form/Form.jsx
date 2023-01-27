@@ -14,8 +14,8 @@ const INITIAL_STATE = {
 
 class Form extends Component {
   state = {
-    name: this.props.selectContact.name,
-    number: this.props.selectContact.number,
+    name: this.props.selectedContact.name,
+    number: this.props.selectedContact.number,
   };
 
   static defaultProps = { form: 'add' };
@@ -23,6 +23,7 @@ class Form extends Component {
   static propTypes = {
     formEvent: PropTypes.oneOf(['add', 'edit']),
     onSubmit: PropTypes.func.isRequired,
+    isContains: PropTypes.func.isRequired,
     editContact: PropTypes.func,
     selectContact: PropTypes.shape({
       name: PropTypes.string,
@@ -42,11 +43,19 @@ class Form extends Component {
 
   hendleSubmit = e => {
     e.preventDefault();
-    const { formEvent, editContact, onSubmit } = this.props;
+    const { name } = this.state;
+    const { formEvent, editContact, onSubmit, isContains } = this.props;
+
     if (formEvent === 'add') {
+      if (isContains(name)) {
+        alert(`${name} is already in contacts.`);
+        return;
+      }
       onSubmit({ ...this.state });
     }
+
     if (formEvent === 'edit') editContact({ ...this.state });
+
     this.reset();
   };
 
